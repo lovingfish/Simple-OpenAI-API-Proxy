@@ -1,7 +1,7 @@
 {
   "name": "openai-api-proxy",
-  "version": "1.0.0",
-  "description": "OpenAI API reverse proxy service for Render",
+  "version": "2.0.0",
+  "description": "OpenAI API reverse proxy with multi-account load balancing for Render",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",

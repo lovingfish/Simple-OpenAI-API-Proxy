@@ -5,7 +5,17 @@
       "mcp__zen__thinkdeep",
       "Bash(git init)",
       "Bash(git add .)",
-      "Bash(git commit -m \"v1.0.0: Initial release - OpenAI API Proxy for Render\")"
+      "Bash(git commit -m \"v1.0.0: Initial release - OpenAI API Proxy for Render\")",
+      "Bash(git checkout -b develop)",
+      "mcp__zen__planner",
+      "Bash(mkdir -p src/{config,managers,strategies,utils})",
+      "Bash(mkdir -p api examples)",
+      "Bash(tree src/ api/ examples/ -a)",
+      "Bash(node -c index.js)",
+      "Bash(node -c src/config/ConfigManager.js)",
+      "Bash(node -c src/managers/ApiKeyManager.js)",
+      "Bash(node -c src/strategies/RoundRobin.js)",
+      "Bash(node -c src/managers/LoadBalancerMiddleware.js)"
     ],
     "deny": [],
     "ask": []
