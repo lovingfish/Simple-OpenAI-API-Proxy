@@ -4,8 +4,8 @@
   "description": "Simple OpenAI API reverse proxy",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon index.js",
+    "start": "node server.js",
+    "dev": "nodemon server.js",
     "deploy:cloudflare": "wrangler deploy",
     "dev:cloudflare": "wrangler dev"
   },
