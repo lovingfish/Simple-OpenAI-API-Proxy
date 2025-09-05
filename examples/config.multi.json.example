@@ -1,0 +1,36 @@
+{
+  "strategy": "roundrobin",
+  "keys": [
+    {
+      "id": "key_primary",
+      "key": "sk-your-primary-api-key-here",
+      "weight": 2,
+      "enabled": true,
+      "description": "Primary API key with higher weight"
+    },
+    {
+      "id": "key_secondary",
+      "key": "sk-your-secondary-api-key-here",
+      "weight": 1,
+      "enabled": true,
+      "description": "Secondary API key"
+    },
+    {
+      "id": "key_backup",
+      "key": "sk-your-backup-api-key-here",
+      "weight": 1,
+      "enabled": true,
+      "description": "Backup API key"
+    }
+  ],
+  "failover": {
+    "maxRetries": 3,
+    "retryDelay": 1000,
+    "failureThreshold": 5,
+    "recoveryTime": 600000
+  },
+  "logging": {
+    "level": "info",
+    "includeTimestamps": true
+  }
+}
