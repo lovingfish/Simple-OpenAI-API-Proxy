@@ -1,9 +1,9 @@
 # Simple OpenAI API Proxy
 
-[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/your-username/your-repo-name)
-[![Deploy to Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/your-username/your-repo-name)
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/your-username/your-repo-name)
-<a href="https://github.com/your-username/your-repo-name#cloudflare-workers"><img src="https://img.shields.io/badge/Deploy%20to-Cloudflare%20Workers-orange" alt="Deploy to Cloudflare Workers"></a>
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/zhu-jl18/Simple-OpenAI-API-Proxy)
+[![Deploy to Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/zhu-jl18/Simple-OpenAI-API-Proxy)
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/zhu-jl18/Simple-OpenAI-API-Proxy)
+<a href="https://github.com/zhu-jl18/Simple-OpenAI-API-Proxy#cloudflare-workers"><img src="https://img.shields.io/badge/Deploy%20to-Cloudflare%20Workers-orange" alt="Deploy to Cloudflare Workers"></a>
 
 A minimalist reverse proxy for the OpenAI API. Its sole purpose is to forward requests, helping to resolve network access issues.
 
@@ -24,11 +24,11 @@ You can deploy the Node.js version (`index.js`) with a single click to the follo
 
 | Platform | Button | Notes |
 |----------|--------|-------|
-| **Render** | [![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/your-username/your-repo-name) | Runs as a persistent Node.js web service. Reliable and easy to manage. |
-| **Vercel** | [![Deploy to Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/your-username/your-repo-name) | Deploys as a serverless function. Generous free tier. |
-| **Netlify**| [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/your-username/your-repo-name) | Deploys as a serverless function. Also has a great free tier. |
+| **Render** | [![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/zhu-jl18/Simple-OpenAI-API-Proxy) | Runs as a persistent Node.js web service. Reliable and easy to manage. |
+| **Vercel** | [![Deploy to Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/zhu-jl18/Simple-OpenAI-API-Proxy) | Deploys as a serverless function. Generous free tier. |
+| **Netlify**| [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/zhu-jl18/Simple-OpenAI-API-Proxy) | Deploys as a serverless function. Also has a great free tier. |
 
-**Note:** Remember to replace `your-username/your-repo-name` in the URLs above with your actual GitHub repository details after you fork/clone it.
+
 
 ### Cloudflare Workers (Manual Deployment)
 
