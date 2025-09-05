@@ -5,6 +5,10 @@ const { createProxyMiddleware } = require('http-proxy-middleware');
 
 const app = express();
 
+// Vercel a a body parser for the proxy
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 // 基础中间件
 app.use(cors({
   origin: '*',
