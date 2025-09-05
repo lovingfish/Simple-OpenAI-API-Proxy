@@ -73,3 +73,20 @@ temp/
 
 # macOS-specific files
 .DS_Store
+
+# Windows-specific files
+Thumbs.db
+ehthumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Test coverage
+coverage/
+
+# Build artifacts
+build/
+dist/
