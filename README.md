@@ -1,96 +1,110 @@
-# Simple OpenAI API Proxy
+# OpenAI API Proxy for Cloudflare Workers
 
-[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/zhu-jl18/Simple-OpenAI-API-Proxy)
-[![Deploy to Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/zhu-jl18/Simple-OpenAI-API-Proxy)
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/zhu-jl18/Simple-OpenAI-API-Proxy)
-<a href="https://github.com/zhu-jl18/Simple-OpenAI-API-Proxy#cloudflare-workers"><img src="https://img.shields.io/badge/Deploy%20to-Cloudflare%20Workers-orange" alt="Deploy to Cloudflare Workers"></a>
-
-A minimalist reverse proxy for the OpenAI API. Its sole purpose is to forward requests, helping to resolve network access issues.
+A minimalist reverse proxy for the OpenAI API, deployed on Cloudflare Workers for global edge routing and maximum performance.
 
 ## 🎯 Features
-- ✅ Forwards all requests to the OpenAI API.
-- ✅ Helps bypass network restrictions.
-- ✅ One-click deployment to multiple platforms (Render, Vercel, Netlify).
-- ✅ Supports manual deployment to Cloudflare Workers.
-- ✅ Simple, focused, and easy to use.
+- ✅ Forwards all requests to the OpenAI API
+- ✅ Helps bypass network restrictions
+- ✅ Deployed on Cloudflare's edge network for low latency
+- ✅ CORS enabled for cross-origin requests
+- ✅ Simple and lightweight implementation
 
-## 🚀 Deployment
+## 🚀 Deployment Guide
 
-This project can be deployed to various platforms. Choose the one that best fits your needs.
+### Prerequisites
+- A Cloudflare account (free tier available)
+- Node.js installed on your local machine
+- wrangler CLI
 
-### One-Click Deployment (Recommended for Node.js Version)
+### Step 1: Install Wrangler CLI
+```bash
+npm install -g wrangler
+```
 
-You can deploy the Node.js version (`index.js`) with a single click to the following platforms:
+### Step 2: Login to Cloudflare
+```bash
+wrangler login
+```
+This will open a browser window where you can log in to your Cloudflare account.
 
-| Platform | Button | Notes |
-|----------|--------|-------|
-| **Render** | [![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/zhu-jl18/Simple-OpenAI-API-Proxy) | Runs as a persistent Node.js web service. Reliable and easy to manage. |
-| **Vercel** | [![Deploy to Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/zhu-jl18/Simple-OpenAI-API-Proxy) | Deploys as a serverless function. Generous free tier. |
-| **Netlify**| [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/zhu-jl18/Simple-OpenAI-API-Proxy) | Deploys as a serverless function. Also has a great free tier. |
+### Step 3: Get Your Account ID
+If you haven't already, find your Account ID in the Cloudflare dashboard:
+1. Go to [Cloudflare Dashboard](https://dash.cloudflare.com)
+2. On the right sidebar, under "Workers & Pages", you'll see your "Account ID"
+3. Copy this ID
 
+### Step 4: Configure wrangler.toml
+Update the `wrangler.toml` file with your Account ID:
 
+```toml
+name = "openai-api-proxy"
+compatibility_date = "2024-09-04"
+main = "cloudflare-worker.js"
 
-### Cloudflare Workers (Manual Deployment)
+# Replace with your actual Account ID
+account_id = "your-account-id-here"
+```
 
-For the lowest possible latency, you can deploy the edge version (`cloudflare-worker.js`).
+### Step 5: Deploy the Worker
+```bash
+wrangler deploy
+```
 
-1.  **Install Wrangler CLI:**
-    ```bash
-    npm install -g wrangler
-    ```
-2.  **Login to Cloudflare:**
-    ```bash
-    wrangler login
-    ```
-3.  **Deploy the Worker:**
-    ```bash
-    npm run deploy:cloudflare
-    ```
+The first time you deploy, Wrangler might ask you to create a worker. Just follow the prompts.
 
-## 平台选择指南 (Platform Comparison)
-
-Not sure which platform to choose? Here's a quick comparison:
-
-| Feature               | Cloudflare Workers (Edge) | Vercel / Netlify (Serverless) | Render (Web Service) |
-|-----------------------|---------------------------|-------------------------------|----------------------|
-| **Performance**       | 🏆 **Best (Lowest Latency)** | Good (Fast, but with cold starts) | Good (Always on, no cold starts) |
-| **Cost (Free Tier)**  | Good (100k requests/day)  | 🏆 **Excellent (Generous)**   | Good (Free instance sleeps) |
-| **Deployment Model**  | Edge Functions            | Serverless Functions          | Persistent Node.js Server |
-| **Ease of Use**       | Manual CLI deployment     | 🏆 **Easiest (One-click)**    | Very Easy (One-click) |
-| **Best For**          | Speed-critical applications | Hobby projects, high traffic | Traditional apps, reliability |
-
-**Summary:**
-*   **For maximum speed:** Choose **Cloudflare Workers**.
-*   **For the best free tier and ease of use:** Choose **Vercel** or **Netlify**.
-*   **For a simple, traditional Node.js server:** Choose **Render**.
+After deployment, you'll get your worker URL, which will look like:
+`https://openai-api-proxy.your-subname.workers.dev`
 
 ## 🔧 Usage
 
-After deployment, simply replace the official OpenAI API base URL with your proxy URL:
+After deployment, replace the official OpenAI API base URL with your proxy URL:
 
 **Original:**
 `https://api.openai.com/v1/chat/completions`
 
 **New:**
-`https://your-proxy-address.com/v1/chat/completions`
+`https://openai-api-proxy.your-subname.workers.dev/v1/chat/completions`
 
-That's it. Your requests will now be routed through your own proxy.
+### Example Usage with curl
+```bash
+curl -X POST https://openai-api-proxy.your-subname.workers.dev/v1/chat/completions \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer your-openai-api-key" \
+  -d '{
+    "model": "gpt-4",
+    "messages": [
+      {"role": "user", "content": "Hello, world!"}
+    ]
+  }'
+```
+
+## ⚙️ Configuration
+
+The proxy is pre-configured to:
+
+- Forward all requests to `https://api.openai.com`
+- Handle CORS preflight (OPTIONS) requests
+- Set appropriate CORS headers for all responses
+- Include a health check endpoint at `/health`
 
 ## ⚠️ Limitations
 
-*   **No Streaming Support**: This proxy buffers the entire response from OpenAI before sending it to you. Therefore, it does **not** support streaming responses (`stream: true`). This is a conscious trade-off to keep the proxy simple.
+- **No Streaming Support**: This proxy does not support streaming responses (`stream: true`) as it buffers the entire response.
+- **Request Size**: Cloudflare Workers have a 128MB request/response size limit.
 
-## 🛠️ Local Development
+## 🔍 Health Check
 
-1.  **Install dependencies:**
-    ```bash
-    npm install
-    ```
-2.  **Start the server:**
-    ```bash
-    npm run dev
-    ```
-3.  The proxy will be running at `http://localhost:10000`.
+You can check if your proxy is running correctly by visiting:
+`https://openai-api-proxy.your-subname.workers.dev/health`
+
+This should return a JSON response:
+```json
+{
+  "status": "ok",
+  "message": "OpenAI API Proxy is running",
+  "version": "1.0.0"
+}
+```
 
 ## 📄 License
 MIT
