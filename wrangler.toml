@@ -1,0 +1,6 @@
+name = "openai-api-proxy"
+compatibility_date = "2024-09-04"
+main = "cloudflare-worker.js"
+
+# 部署账户配置
+account_id = "23bc94c1b79b4474ea7fa59885da36e2"  # 你的Account ID
